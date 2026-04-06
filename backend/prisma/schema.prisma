@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model GymOwner {
+  id                String    @id @default(uuid())
+  email             String    @unique
+  passwordHash      String
+  gymName           String
+  plan              String    @default("free")   // free | starter | pro
+  messageCount      Int       @default(0)         // messages sent this month
+  quotaResetAt      DateTime  @default(now())     // reset monthly
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  // Relations
+  members           Member[]
+  messages          MessageLog[]
+}
+
+
+model Member {
+  id           String    @id @default(uuid())
+  gymId        String
+  name         String
+  phoneNumber  String
+  joinDate     DateTime  @default(now())
+  
+  // Relations
+  gym          GymOwner  @relation(fields: [gymId], references: [id])
+  memberships  Membership[]
+  messages     MessageLog[]
+
+  @@unique([gymId, phoneNumber])
+}
+
+model Membership {
+  id           String    @id @default(uuid())
+  memberId     String
+  planName     String
+  startDate    DateTime
+  endDate      DateTime
+  isActive     Boolean   @default(true)
+  
+  // Relations
+  member       Member    @relation(fields: [memberId], references: [id])
+}
+
+model MessageLog {
+  id           String    @id @default(uuid())
+  gymId        String
+  memberId     String?
+  content      String
+  status       String    @default("PENDING") // PENDING, SENT, FAILED
+  sentAt       DateTime?
+  createdAt    DateTime  @default(now())
+
+  // Relations
+  gym          GymOwner  @relation(fields: [gymId], references: [id])
+  member       Member?   @relation(fields: [memberId], references: [id])
+}

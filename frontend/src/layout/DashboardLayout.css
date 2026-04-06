@@ -1,0 +1,65 @@
+.layout-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: var(--color-surface-1);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.brand {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-lg);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--color-text-main);
+  border-bottom: 1px solid var(--color-border);
+  gap: var(--space-sm);
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md) 0;
+}
+
+.nav-item {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  border-left: 2px solid transparent;
+  transition: var(--transition-fast);
+}
+
+.nav-item:hover {
+  color: var(--color-text-main);
+  background-color: var(--color-surface-2);
+}
+
+.nav-item.active {
+  color: var(--color-text-main);
+  border-left-color: var(--color-accent-volt);
+  background-color: var(--color-accent-volt-dim);
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-xl);
+  background-color: var(--color-bg);
+}
