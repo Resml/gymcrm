@@ -18,7 +18,7 @@ export function Settings() {
   useEffect(() => {
     async function fetchQuota() {
       try {
-        const res = await fetch('http://localhost:3000/api/whatsapp/quota', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/whatsapp/quota`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (res.ok) {

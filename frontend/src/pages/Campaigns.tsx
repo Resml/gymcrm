@@ -22,7 +22,7 @@ export function Campaigns() {
     setIsSending(true);
     setResult(null);
     try {
-      const res = await fetch('http://localhost:3000/api/whatsapp/broadcast', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/whatsapp/broadcast`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${jwtToken}` },
         body: JSON.stringify({ target: targetAudience, message: messageBody })

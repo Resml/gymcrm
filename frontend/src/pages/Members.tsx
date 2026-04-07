@@ -24,7 +24,7 @@ export function Members() {
   const fetchMembers = async () => {
     if (!token) return;
     try {
-      const res = await fetch('http://localhost:3000/api/members', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/members`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (res.ok) {
@@ -56,7 +56,7 @@ export function Members() {
     if (!messageText.trim() || selectedIds.length === 0) return;
     setIsSending(true);
     try {
-      const res = await fetch('http://localhost:3000/api/whatsapp/send-manual', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/whatsapp/send-manual`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export function Members() {
           alert('No valid members parsed. Format must be: Name,Phone,Date');
           return;
         }
-        const res = await fetch('http://localhost:3000/api/members/bulk', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/members/bulk`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
           body: JSON.stringify({ members: parsedMembers })
@@ -122,7 +122,7 @@ export function Members() {
     const months = prompt('Renew for how many months? (1, 3, or 12)', '1');
     if (!months) return;
     try {
-      const res = await fetch(`http://localhost:3000/api/members/${memberId}/renew`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/members/${memberId}/renew`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ planMonths: months })
@@ -150,7 +150,7 @@ export function Members() {
 
   const handleAddMember = async () => {
     try {
-      await fetch('http://localhost:3000/api/members', {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/members`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify({ name, phoneNumber, planMonths })

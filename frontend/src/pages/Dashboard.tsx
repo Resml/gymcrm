@@ -9,7 +9,7 @@ export function Dashboard() {
 
   useEffect(() => {
     if (!token) return;
-    fetch('http://localhost:3000/api/members/stats', {
+    fetch(`${import.meta.env.VITE_API_URL}/api/members/stats`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(r => r.json())
