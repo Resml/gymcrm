@@ -18,5 +18,21 @@ services:
     ports:
       - "6379:6379"
 
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: gym-whatsapp-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://gymadmin:gympassword@postgres:5432/gym_whatsapp?schema=public
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PORT=3000
+    depends_on:
+      - postgres
+      - redis
+
 volumes:
   pgdata:
