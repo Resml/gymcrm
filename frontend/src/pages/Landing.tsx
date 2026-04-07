@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Zap, Users, MessageSquare, Clock, CheckCircle2, ArrowRight, Star, Plus } from 'lucide-react';
+import { Zap, Users, MessageSquare, Clock, CheckCircle2, ArrowRight } from 'lucide-react';
 
 // Advanced Spotlight Box Component
 function SpotlightBox({ children, className = '', style = {} }: { children: React.ReactNode, className?: string, style?: any }) {

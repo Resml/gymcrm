@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ShieldCheck, Activity, Zap, TrendingUp } from 'lucide-react';
+import { ShieldCheck, Activity, Zap } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 interface QuotaInfo {
