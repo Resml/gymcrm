@@ -4,7 +4,7 @@ services:
     runtime: node
     rootDir: backend
     buildCommand: npm install && npm run build && npx prisma generate
-    startCommand: npm run start
+    startCommand: node dist/src/main.js
     envVars:
       - key: NODE_VERSION
         value: 22
